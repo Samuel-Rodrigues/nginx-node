@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  nodeserver:
+    build:
+      context: ./node
+    ports:
+      - "81:9000"
+    networks:
+      - node-network
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    networks:
+      - node-network
+
+networks:
+  node-network:
+    driver: bridge
